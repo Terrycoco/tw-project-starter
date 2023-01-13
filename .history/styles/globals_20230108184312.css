@@ -1,0 +1,17 @@
+@import "./typography.css";
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .kicker {
+    @apply text-left text-sm uppercase italic underline underline-offset-8 tracking-wide;
+  }
+}
+
+@layer base {
+  :root {
+    --color-primary: 255 115 179;
+    --color-secondary: 111 114 185;
+    /* ... */
+  }
+}

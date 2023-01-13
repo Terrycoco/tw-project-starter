@@ -1,0 +1,20 @@
+@import "./typography.css";
+@import "./colors.css";
+@import base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :target:before {
+    content: "";
+    display: block;
+    height: 90px; /* fixed header height*/
+    margin: -90px 0 0; /* negative fixed header height */
+  }
+}
+
+@layer components {
+  .kicker {
+    @apply font-bold text-blue-800 text-left text-sm uppercase italic underline underline-offset-8 tracking-wide;
+  }
+}

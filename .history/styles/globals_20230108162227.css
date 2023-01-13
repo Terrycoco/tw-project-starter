@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-size: 7px;
+  }
+
+  @media screen(mobile) {
+    body {
+      font-size: 11px;
+    }
+  }
+  @media screen(tablet) {
+    body {
+      font-size: 13px;
+    }
+  }
+  @media screen(laptop) {
+    body {
+      font-size: 15px;
+    }
+  }
+  @media screen(desktop) {
+    body {
+      font-size: 19px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@tailwind base;
+@layer base {
+  body {
+    font-size: 7px;
+  }
+
+  //specific typography screen sizes
+  //large phone (mobile)
+  @media (min-width: 640px) {
+    body {
+      font-size: 11px;
+    }
+  }
+
+  //tablet
+  @media (min-width: 768px) {
+    body {
+      font-size: 13px;
+    }
+  }
+
+  //laptop
+  @media (min-width: 1024px) {
+    body {
+      font-size: 15px;
+    }
+  }
+}
+
+//desktop
+@media (min-width: 1280px) {
+  body {
+    font-size: 19px;
+  }
+}

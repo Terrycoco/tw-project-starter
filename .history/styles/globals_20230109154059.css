@@ -1,0 +1,18 @@
+@import "./typography.css";
+@import "./colors.css";
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .kicker {
+    @apply font-bold text-blue-800 text-left text-sm uppercase italic underline underline-offset-8 tracking-wide;
+  }
+
+  .anchored::before {
+    display: block;
+    content: " ";
+    height: 80px; /* Give height of your fixed element */
+    margin-top: -80px; /* Give negative margin of your fixed element */
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,10 @@
+@tailwind base;
+@import "./custom_base.css";
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .kicker {
+    @apply font-bold text-blue-800 text-left text-sm uppercase italic underline underline-offset-8 tracking-wide;
+  }
+}

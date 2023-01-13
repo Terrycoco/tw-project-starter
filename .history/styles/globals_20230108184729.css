@@ -1,0 +1,10 @@
+@import "./typography.css";
+@import "./colors.css";
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .kicker {
+    @apply text-left text-sm uppercase italic underline underline-offset-8 tracking-wide;
+  }
+}

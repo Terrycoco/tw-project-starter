@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-normal mobile:text-normal-mobile tablet:text-normal-tablet laptop:text-normal-laptop desktop:text-normal-desktop;
+  }
+}

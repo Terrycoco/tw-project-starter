@@ -1,0 +1,7 @@
+@import "./tailwind.css";
+
+@layer components {
+  .kicker {
+    @apply font-bold text-blue-800 text-left text-sm uppercase italic underline underline-offset-8 tracking-wide;
+  }
+}

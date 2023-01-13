@@ -1,0 +1,46 @@
+@tailwind base;
+
+@layer base {
+  html {
+    font-size: 7px;
+    line-height: 1.5;
+  }
+
+  @media screen(mobile) {
+    html {
+      font-size: 11px;
+    }
+  }
+  @media screen(tablet) {
+    html {
+      font-size: 13px;
+    }
+  }
+  @media screen(laptop) {
+    html {
+      font-size: 15px;
+    }
+  }
+  @media screen(desktop) {
+    html {
+      font-size: 19px;
+    }
+  }
+  @media screen(xl) {
+    html {
+      font-size: 21px;
+    }
+  }
+
+  h1 {
+    @apply text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+}

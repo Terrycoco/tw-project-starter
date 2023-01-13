@@ -1,0 +1,19 @@
+@import "./typography.css";
+@import "./colors.css";
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .anchored::before {
+    content: "";
+    display: block;
+    position: relative;
+    width: 0;
+    height: 100px;
+    margin-top: -100px;
+  }
+
+  .kicker {
+    @apply font-bold text-blue-800 text-left text-sm uppercase italic underline underline-offset-8 tracking-wide;
+  }
+}

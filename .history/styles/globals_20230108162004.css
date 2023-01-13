@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+//default small phone
+@layer base {
+  body {
+    font-size: 7px;
+  }
+  @media screen(desktop) {
+    body {
+      font-size: 19px;
+    }
+  }
+}
+
+//specific typography screen sizes
+/* //large phone (mobile)
+@media screen(mobile) {
+  @layer base {
+    body {
+      font-size: 11px;
+    }
+  }
+}
+
+//tablet
+@media screen(tablet) {
+  body {
+    font-size: 13px;
+  }
+}
+
+//laptop
+@media screen(laptop) {
+  @layer base {
+    body {
+      font-size: 15px;
+    }
+  }
+}
+
+//desktop
+@media screen(desktop) {
+  body {
+    font-size: 19px;
+  }
+} */

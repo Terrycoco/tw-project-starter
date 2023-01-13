@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-xs mobile:text-mobile tablet:text-tablet laptop:text-laptop desktop:text-desktop;
+  }
+
+  h3 {
+    @apply text-xs mobile:text-mobile tablet:text-tablet laptop:text-laptop desktop:text-desktop;
+  }
+}

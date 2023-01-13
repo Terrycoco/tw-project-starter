@@ -1,0 +1,90 @@
+@tailwind base;
+
+/** TYPOGRAPHY **/
+/**  TW DEFAULTS
+text-xs	    font-size: 0.75rem; 
+            line-height: 1rem; 
+text-sm	    font-size: 0.875rem;  
+            line-height: 1.25rem; 
+text-base	font-size: 1rem;  
+            line-height: 1.5rem;  
+text-lg	    font-size: 1.125rem;  
+            line-height: 1.75rem;  
+text-xl	    font-size: 1.25rem;  
+            line-height: 1.75rem;  
+text-2xl	font-size: 1.5rem;  
+            line-height: 2rem; 
+text-3xl	font-size: 1.875rem;  
+            line-height: 2.25rem; 
+text-4xl	font-size: 2.25rem; 
+            line-height: 2.5rem;  
+text-5xl	font-size: 3rem;  
+            line-height: 1;
+text-6xl	font-size: 3.75rem; 
+            line-height: 1;
+text-7xl	font-size: 4.5rem;  
+            line-height: 1;
+text-8xl	font-size: 6rem;  
+            line-height: 1;
+text-9xl	font-size: 8rem; 
+            line-height: 1;
+**/
+
+/*to change all proportions change base html font size here */
+@layer base {
+  html {
+    font-size: 15px;
+    line-height: 1.5;
+    scroll-padding-top: 80px; /* needed for anchor jumps to account for header height */
+  }
+
+  @media screen(mobile) {
+    html {
+      font-size: 16px;
+    }
+  }
+  @media screen(tablet) {
+    html {
+      font-size: 17px;
+    }
+  }
+  @media screen(laptop) {
+    html {
+      font-size: 18px;
+    }
+  }
+  @media screen(desktop) {
+    html {
+      font-size: 19px;
+    }
+  }
+  @media screen(xl) {
+    html {
+      font-size: 21px;
+    }
+  }
+
+  /* change base element typography here */
+  h1 {
+    @apply text-5xl mb-8;
+  }
+
+  h2 {
+    @apply text-3xl mb-6;
+  }
+
+  h3 {
+    @apply text-xl mb-4;
+  }
+
+  body {
+    @apply mb-6;
+  }
+}
+
+/**COLORS **/
+@layer base {
+  p {
+    @apply text-text-normal;
+  }
+}

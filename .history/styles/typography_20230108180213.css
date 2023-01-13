@@ -1,0 +1,12 @@
+@tailwind base;
+
+@layer base {
+  html {
+    font-size: 7px; /* set so px is easy with rem */
+  }
+  @media screen(mobile) {
+    html {
+      font-size: 11px;
+    }
+  }
+}

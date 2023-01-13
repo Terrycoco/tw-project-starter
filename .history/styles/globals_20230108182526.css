@@ -1,0 +1,9 @@
+@import "./typography.css";
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .kicker {
+    @apply uppercase italic underline underline-offset-8 tracking-[2px];
+  }
+}

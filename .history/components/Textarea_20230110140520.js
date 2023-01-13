@@ -1,0 +1,49 @@
+import { twMerge } from "tailwind-merge";
+import { useState } from "react";
+
+const Textarea = (props) => {
+  const [styles, useStyles] = useState(props.defaultValue);
+  return (
+    <div className="flex justify-center">
+      <div className="w-full">
+        <label
+          htmlFor="exampleFormControlTextarea1"
+          className={twMerge(
+            "form-label inline-block text-xs text-gray-700",
+            props.labelStyles
+          )}
+        >
+          {props.label}
+        </label>
+        <textarea
+          className={twMerge(
+            `
+            form-control
+            block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`,
+            props.valueStyles
+          )}
+          id="exampleFormControlTextarea1"
+          rows={props.rows || 3}
+          placeholder="Your message"
+          defaultValue={props.children}
+          onChange={props.onChange}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Textarea;

@@ -1,0 +1,4 @@
+@tailwind base;
+@import "./custom_base.css";
+@tailwind components;
+@tailwind utilities;
