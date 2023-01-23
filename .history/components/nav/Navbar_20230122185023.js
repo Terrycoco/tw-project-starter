@@ -2,6 +2,7 @@ import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import theme from "../../styles/themes/zTheme";
 import SVGLoader from "../SVGLoader";
+import { clearStorage, setStorage } from "../../utils";
 
 //TODO: make nav bar customizable
 const Navbar = (props) => {
@@ -21,6 +22,11 @@ const Navbar = (props) => {
   `;
 
   outer = props.outerStyles ? twMerge(outer, props.outerStyles) : outer;
+
+  const resetTheme = () => {
+    clearStorage("theme");
+    setStorage("theme", theme);
+  };
 
   return (
     <div className="sticky top-0 left-0 h-18 z-20">
@@ -90,6 +96,12 @@ const Navbar = (props) => {
             {/*<!-- Start right links -->*/}
             <ul>
               <li className="nav-item pr-2">
+                <button
+                  className={`btn-primary nav-link ${theme.nav.link} p-0`}
+                  onClick={resetTheme}
+                >
+                  reset theme
+                </button>
                 <button
                   className={`btn-primary nav-link ${theme.nav.link} p-0`}
                   onClick={props.onThemeClick}
