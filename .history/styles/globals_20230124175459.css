@@ -1,0 +1,24 @@
+@import "./custom_base.css";
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .kicker {
+    @apply mb-2 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400;
+  }
+
+  .shadow-left {
+    box-shadow: -6px 3px 6px gray;
+  }
+
+  .fade-in ( animation: fadeIn 2s;);
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
