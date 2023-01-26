@@ -1,0 +1,47 @@
+@import "./custom_base.css";
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .kicker {
+    @apply mb-2 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400;
+  }
+}
+
+.shadow-left {
+  box-shadow: -6px 3px 6px gray;
+}
+
+.expand-1 {
+  font-stretch: 112.5%;
+}
+.expand-2 {
+  font-stretch: 125%;
+}
+.expand-3 {
+  font-stretch: 150%;
+}
+.expand-4 {
+  font-stretch: 160%;
+}
+
+.expand-0 {
+  font-stretch: 100%;
+}
+.shrink-0 {
+  font-stretch: 100%;
+}
+
+.shrink-1 {
+  font-stretch: 87.5%;
+}
+.shrink-2 {
+  font-stretch: 75%;
+}
+.shrink-3 {
+  font-stretch: 62.5%;
+}
+.shrink-4 {
+  font-stretch: 50%;
+}
+2
