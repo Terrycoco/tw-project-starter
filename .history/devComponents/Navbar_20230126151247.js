@@ -32,6 +32,23 @@ const Navbar = (props) => {
   let cl = twMerge(style, theme.layout.header);
   cl = twMerge(cl, props.className);
 
+  const getColor = (latestClass) => {
+    //for dev only -- get around non-safelisted colors
+    let colorIdx = cl.indexOf("#");
+    if (colorIdx > 0) {
+      let hex = latestClass.substr(colorIdx, 7);
+      console.log("hex is", hex);
+
+      if (latestClass.substr(colorIdx - 4, 3) == "bg-") {
+        return {
+          backgroundColor: `${hex}`,
+        };
+      }
+    } else {
+      return {};
+    }
+  };
+
   const resetTheme = () => {
     // props.onThemeReset(); //from parent
     // setShowModal(false);
@@ -40,7 +57,7 @@ const Navbar = (props) => {
   return (
     <>
       <div className={`sticky top-0 left-0 w-screen z-1000 `}>
-        <nav id={props.id} className={cl} style={useColorChanger(cl)}>
+        <nav id={props.id} className={cl} style={getColor(cl)}>
           {/* Start Collapsible Wrapper */}
           <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
             <button

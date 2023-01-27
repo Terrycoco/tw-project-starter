@@ -1,3 +1,4 @@
+import { theme } from "../../styles/themes";
 import { twMerge } from "tailwind-merge";
 import { useTheme } from "../../context/ThemeContext";
 import useColorChanger from "../../hooks/useColorChanger";

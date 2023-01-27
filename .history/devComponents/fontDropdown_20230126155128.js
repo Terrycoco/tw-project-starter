@@ -5,8 +5,8 @@ import { useTheme } from "../context/ThemeContext";
 
 let style = `
     form-select 
-    form-select-xs
-    text-sm
+    form-select-sm
+    text-base
     appearance-none
     block
     w-full

@@ -4,7 +4,7 @@
 @layer base {
   html {
     font-size: 16px;
-    scroll-padding-top: 70px; /* needed for anchor jumps to account for header height */
+    scroll-padding-top: 50px; /* needed for anchor jumps to account for header height */
   }
 
   /*large mobile */

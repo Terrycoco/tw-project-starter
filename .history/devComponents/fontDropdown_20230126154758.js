@@ -5,8 +5,8 @@ import { useTheme } from "../context/ThemeContext";
 
 let style = `
     form-select 
-    form-select-xs
-    text-sm
+    form-select-sm
+    text-base
     appearance-none
     block
     w-full
@@ -45,7 +45,7 @@ const FontDropdown = (props) => {
         options.push(<option key={val}>{val}</option>);
       }
       result.push(
-        <optgroup key={group} className="text-sm" label={group.toUpperCase()}>
+        <optgroup key={group} className="text-xs" label={group.toUpperCase()}>
           {options}
         </optgroup>
       );

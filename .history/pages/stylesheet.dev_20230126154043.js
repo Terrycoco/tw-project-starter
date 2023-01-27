@@ -283,8 +283,8 @@ const Stylesheet = (props) => {
       }
       if (elementClass.includes(`text-${colorClass}`)) {
         let txtcl = elementClass.replace(
-          `text-${colorClass}`,
-          `text-[${colorHex}]`
+          `bg-${colorClass}`,
+          `bg-[${colorHex}]`
         );
         result += ` ${txtcl}`;
       }
@@ -348,7 +348,7 @@ const Stylesheet = (props) => {
             </FlexColumn>
 
             <FlexColumn key="col2" className="md:w-1/3">
-              <H3 className={getClasses("text", "h3")}>color playground</H3>
+              <h3 className={getClasses("text", "h3")}>color playground</h3>
               <p className="text-sm text-medium mt-1 ">
                 Drag and drop into palette category to change
               </p>
