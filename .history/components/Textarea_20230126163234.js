@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { useState } from "react";
-import { useTheme, useColorChanger } from "../hooks";
+import { useTheme, useColorPicker } from "../hooks";
 
 const Textarea = (props) => {
   const [value, setValue] = useState(props.defaultValue);

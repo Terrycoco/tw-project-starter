@@ -1,6 +1,6 @@
 //IMPORTANT!!! Any page with .dev.js will be viewable in dev environment only
 //TO PUBLISH ANY PAGE IT MUST be named youpagename.page.js
-import { useTheme } from "../hooks";
+import { useTheme } from "../context/ThemeContext";
 import {
   fontVariables,
   getFontClassName,

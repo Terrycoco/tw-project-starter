@@ -21,6 +21,7 @@ const style = `
     navbar navbar-expand-lg navbar-light
 `;
 
+//TODO: make nav bar customizable
 const Navbar = (props) => {
   const { theme } = useTheme();
   const [showModal, setShowModal] = useState(false);

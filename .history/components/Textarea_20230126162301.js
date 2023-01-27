@@ -1,12 +1,12 @@
 import { twMerge } from "tailwind-merge";
 import { useState } from "react";
-import { useTheme, useColorChanger } from "../hooks";
+import { useTheme } from "../context/ThemeContext";
 
 const Textarea = (props) => {
   const [value, setValue] = useState(props.defaultValue);
   const { theme } = useTheme();
 
-  let cl = `
+  let style = `
             form-control
             block
             w-full
@@ -24,7 +24,7 @@ const Textarea = (props) => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
   `;
 
-  cl = twMerge(style, props.className);
+  style = props.className ? twMerge(style, props.className) : style;
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -49,17 +49,15 @@ const Textarea = (props) => {
       <div className="w-full">
         <label
           htmlFor="exampleFormControlTextarea1"
-          className={useColorChanger(
-            twMerge(
-              "form-label inline-block text-xs text-gray-700",
-              theme.text.label
-            )
+          className={twMerge(
+            "form-label inline-block text-xs text-gray-700",
+            props.labelStyle
           )}
         >
           {props.label}
         </label>
         <textarea
-          className={cl}
+          className={style}
           id={props.name}
           rows={props.rows || 3}
           placeholder={props.placeholder || null}

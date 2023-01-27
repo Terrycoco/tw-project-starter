@@ -49,17 +49,15 @@ const Textarea = (props) => {
       <div className="w-full">
         <label
           htmlFor="exampleFormControlTextarea1"
-          className={useColorChanger(
-            twMerge(
-              "form-label inline-block text-xs text-gray-700",
-              theme.text.label
-            )
+          className={twMerge(
+            "form-label inline-block text-xs text-gray-700",
+            theme.text.label
           )}
         >
           {props.label}
         </label>
         <textarea
-          className={cl}
+          className={style}
           id={props.name}
           rows={props.rows || 3}
           placeholder={props.placeholder || null}

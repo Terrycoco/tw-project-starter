@@ -24,7 +24,7 @@ const Textarea = (props) => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
   `;
 
-  cl = twMerge(style, props.className);
+  cl = twMerge(cl, props.className);
 
   const handleChange = (e) => {
     setValue(e.target.value);

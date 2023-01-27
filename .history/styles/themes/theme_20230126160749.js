@@ -22,7 +22,7 @@ const _default = {
       "text-xl sm:text-xl font-display leading-none mt-8 font-light text-blackish text-opacity-90",
     h3: "font-base font-semibold leading-none text-secondary mt-7 shrink-0",
     p: "mt-3 max-w-[500px] text-base leading-loose md:leading-normal",
-    label: "text-xs font-normal text-opacity-80 mt-2",
+    label: "text-sm font-normal text-opacity-80",
     kicker:
       "text-kicker mb-0 tracking-widest leading-tight text-bold uppercase text-brand dark:text-white",
     link: "text-secondary underline",
@@ -30,7 +30,7 @@ const _default = {
   layout: {
     page: "w-full min-h-screen bg-whitish",
     section: { full: "w-full", padded: "p-12" },
-    header: "bg-brand h-19 md:h-22",
+    header: "bg-brand h-20 md:h-22",
     nav: {
       link: "text-gray-100 hover:text-white focus:text-accent",
     },

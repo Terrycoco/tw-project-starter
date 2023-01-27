@@ -1,6 +1,6 @@
 //IMPORTANT!!! Any page with .dev.js will be viewable in dev environment only
 //TO PUBLISH ANY PAGE IT MUST be named youpagename.page.js
-import { useTheme } from "../hooks";
+import { useTheme } from "../context/ThemeContext";
 import {
   fontVariables,
   getFontClassName,
@@ -13,7 +13,8 @@ import { DndContext } from "@dnd-kit/core";
 import { Draggable, Droppable } from "../components/dnd";
 import Navbar from "../devComponents/Navbar";
 import HexInput from "../devComponents/HexInput";
-import Textarea from "../devComponents/Textarea";
+import Textarea from "../components/Textarea";
+
 import ColorPicker from "../devComponents/ColorPicker";
 import ColorTester from "../devComponents/ColorTester";
 import { FlexLayout, FlexColumn } from "../components/flex";

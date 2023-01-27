@@ -24,7 +24,11 @@ const Textarea = (props) => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
   `;
 
-  cl = twMerge(style, props.className);
+  cl = twMerge(cl, props.className);
+  let lab = twMerge(
+    "form-label inline-block text-xs text-gray-700",
+    theme.text.label
+  );
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -49,12 +53,8 @@ const Textarea = (props) => {
       <div className="w-full">
         <label
           htmlFor="exampleFormControlTextarea1"
-          className={useColorChanger(
-            twMerge(
-              "form-label inline-block text-xs text-gray-700",
-              theme.text.label
-            )
-          )}
+          className={lab}
+          style={useColorChanger(lab)}
         >
           {props.label}
         </label>
