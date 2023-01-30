@@ -1,0 +1,61 @@
+@tailwind base;
+
+/*to change all proportions change base body font size here */
+@layer base {
+  html {
+    font-size: 10px;
+    scroll-padding-top: 70px; /* needed for anchor jumps to account for header height */
+  }
+
+  /* large mobile*/
+  @media screen(xs) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  /*tablet */
+  @media screen(sm) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  /* laptop */
+  @media screen(md) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  /* desktop */
+  @media screen(lg) {
+    html {
+      font-size: 20px;
+    }
+  }
+
+  /* tv */
+  @media screen(xl) {
+    html {
+      font-size: 21px;
+    }
+  }
+
+  /* change base element typography here 
+  h1 {
+    @apply text-5xl mb-8;
+  }
+
+  h2 {
+    @apply text-3xl mb-6;
+  }
+
+  h3 {
+    @apply text-xl mb-4;
+  } */
+
+  /* p {
+    @apply mb-6;
+  } */
+}

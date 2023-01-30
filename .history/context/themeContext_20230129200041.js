@@ -1,0 +1,36 @@
+import { createContext, useState, useContext } from "react";
+import { initVariants } from "../devUtils/twColorUtils";
+import { currentTheme as mytheme } from "../themes";
+
+const initTheme = initVariants(mytheme);
+console.log("iitTheme:", initTheme);
+
+//create context object with defaults
+export const ThemeContext = createContext({
+  theme: {},
+  setTheme: () => {},
+});
+
+//export Provider
+export function ThemeProvider(props) {
+  const setTheme = (theme) => {
+    setState({ ...state, theme: theme });
+  };
+  const initState = {
+    theme: {},
+    setTheme: setTheme,
+  };
+
+  const [state, setState] = useState(initTheme);
+
+  return (
+    <ThemeContext.Provider value={state}>
+      {props.children}
+    </ThemeContext.Provider>
+  );
+}
+
+//export useContext hook
+export function useTheme() {
+  return useContext(ThemeContext);
+}
