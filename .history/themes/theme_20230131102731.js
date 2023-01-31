@@ -45,13 +45,13 @@ const _default = {
 
     link: "text-secondary underline",
 
-    navlink: "text-whitish hover:text-yellow-200 ",
+    navlink: "text-whitish hover:text-accent",
   },
 
   layout: {
     page: "w-screen min-h-screen mx-auto",
 
-    header: "bg-brand text-whitish h-12 md:h-22",
+    header: "bg-brand text-whitish hover:text-yellow-200 h-12 md:h-22",
 
     section: "container m-6 p-6 mx-auto max-w-5xl",
 

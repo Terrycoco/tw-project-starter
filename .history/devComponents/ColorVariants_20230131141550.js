@@ -3,7 +3,7 @@ import { makeCustomShades } from "../devUtils/twColorUtils";
 import { useState, useEffect } from "react";
 import { useTheme } from "hooks"; //theme was updated in stylesheet
 
-const ColorVariantBox = ({ category, variant, onSelect }) => {
+const ColorVariantBox = ({ category, variant }) => {
   const { theme } = useTheme();
   const [obj, setObj] = useState(theme.variants[category][variant]);
 
@@ -12,7 +12,7 @@ const ColorVariantBox = ({ category, variant, onSelect }) => {
   };
 
   const handleSelect = (e) => {
-    onSelect(e, obj);
+    props.onSelect(e, obj);
   };
 
   return (
@@ -41,6 +41,7 @@ const ColorVariants = (props) => {
   const loopThroughVariants = () => {
     let result = [];
     if (typeof variants == "object") {
+      console.log("stored variants locall: ", variants);
       let keys = Object.keys(variants);
       for (const idx in keys) {
         let key = keys[idx];

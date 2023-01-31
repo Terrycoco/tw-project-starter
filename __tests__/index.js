@@ -5,6 +5,7 @@ import { initVariants } from "../devUtils/twColorUtils";
 const testClass = "bg-brand text-accent";
 const testVars = "bg-brand-100 text-accent-900";
 const testHex = "bg-[#0f766e] text-[#ffffff]";
+const testHover = "bg-brand hover:text-brand-200";
 
 const hexBrand = "#0f766e";
 
@@ -81,6 +82,30 @@ describe("useColorChangerWithHex----", function () {
   });
   test("has color value", () => {
     let result = useColorChanger(testHex, initTheme);
+    console.log(result);
+    expect(result.color).toBe("#ffffff");
+  });
+});
+
+describe("useColorChanger hover  ----", function () {
+  test("returns object", () => {
+    expect(typeof useColorChanger(testHover, initTheme)).toBe("object");
+  });
+  test("has background property", () => {
+    let result = useColorChanger(testHover, initTheme);
+    expect(result.hasOwnProperty("backgroundColor")).toBe(true);
+  });
+  test("has value", () => {
+    let result = useColorChanger(testHover, initTheme);
+    console.log("result:", result);
+    expect(result.backgroundColor).toBe(hexBrand);
+  });
+  test("has color property", () => {
+    let result = useColorChanger(testHover, initTheme);
+    expect(result.hasOwnProperty("color")).toBe(true);
+  });
+  test("has color value", () => {
+    let result = useColorChanger(testHover, initTheme);
     console.log(result);
     expect(result.color).toBe("#ffffff");
   });

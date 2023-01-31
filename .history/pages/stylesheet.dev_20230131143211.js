@@ -89,7 +89,7 @@ const Stylesheet = (props) => {
       updateTheme(selectedColorObj.hex, over.id, "colors");
       //update variants here since we know the category
       console.log("selectedColorObj", selectedColorObj);
-      updateVariants(selectedColorObj.base, over.id, theme); //??? will this be in time
+      updateVariants(selectedColorObj.base, over.id, theme);
     }
   };
 

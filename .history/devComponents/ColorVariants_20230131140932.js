@@ -3,7 +3,7 @@ import { makeCustomShades } from "../devUtils/twColorUtils";
 import { useState, useEffect } from "react";
 import { useTheme } from "hooks"; //theme was updated in stylesheet
 
-const ColorVariantBox = ({ category, variant, onSelect }) => {
+const ColorVariantBox = ({ category, variant }) => {
   const { theme } = useTheme();
   const [obj, setObj] = useState(theme.variants[category][variant]);
 
@@ -12,12 +12,13 @@ const ColorVariantBox = ({ category, variant, onSelect }) => {
   };
 
   const handleSelect = (e) => {
-    onSelect(e, obj);
+    onSelect(obj);
   };
 
   return (
     <div
       id={obj.hex}
+      key={`${category}${key}`}
       className={`flex flex-col justify-center flex-1 h-6 text-xs text-center  ${obj.textColor}`}
       style={style}
       onClick={handleSelect}
@@ -50,9 +51,9 @@ const ColorVariants = (props) => {
         let obj = variants[key];
         result.push(
           <ColorVariantBox
+            key={`${props.category}${props.base}${key}`}
             variant={key}
-            category={props.category}
-            onSelect={handleSelect}
+            category={category}
           />
         );
       } //end for

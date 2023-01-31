@@ -3,30 +3,6 @@ import { makeCustomShades } from "../devUtils/twColorUtils";
 import { useState, useEffect } from "react";
 import { useTheme } from "hooks"; //theme was updated in stylesheet
 
-const ColorVariantBox = ({ category, variant, onSelect }) => {
-  const { theme } = useTheme();
-  const [obj, setObj] = useState(theme.variants[category][variant]);
-
-  let style = {
-    backgroundColor: obj.hex,
-  };
-
-  const handleSelect = (e) => {
-    onSelect(e, obj);
-  };
-
-  return (
-    <div
-      id={obj.hex}
-      className={`flex flex-col justify-center flex-1 h-6 text-xs text-center  ${obj.textColor}`}
-      style={style}
-      onClick={handleSelect}
-    >
-      {obj.variant}
-    </div>
-  );
-};
-
 const ColorVariants = (props) => {
   const { theme, setTheme } = useTheme();
   const [base, setBase] = useState(props.base);
@@ -48,14 +24,23 @@ const ColorVariants = (props) => {
           continue;
         }
         let obj = variants[key];
+
+        let style = {
+          backgroundColor: obj.hex,
+        };
+
         result.push(
-          <ColorVariantBox
-            variant={key}
-            category={props.category}
-            onSelect={handleSelect}
-          />
+          <div
+            id={obj.hex}
+            key={`${props.base}${key}`}
+            className={`flex flex-col justify-center flex-1 h-6 text-xs text-center  ${obj.textColor}`}
+            style={style}
+            onClick={(e) => handleSelect(e, obj)}
+          >
+            {obj[label]}
+          </div>
         );
-      } //end for
+      }
       return result;
     } else {
       return null;

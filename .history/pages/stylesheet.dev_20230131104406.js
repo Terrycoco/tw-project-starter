@@ -6,11 +6,7 @@ import {
   getFontClassName,
   fonts as allFonts,
 } from "../devUtils/fonts";
-import {
-  getColorObjByHex,
-  DEFAULTCOLOROBJ,
-  updateVariants,
-} from "../devUtils/twColorUtils";
+import { getColorObjByHex, DEFAULTCOLOROBJ } from "../devUtils/twColorUtils";
 import React, { useState, useEffect, useContext } from "react";
 import { setStorage, getStorage, clearStorage, newShade } from "../utils";
 import { DndContext } from "@dnd-kit/core";
@@ -87,9 +83,6 @@ const Stylesheet = (props) => {
     setParent(over ? over.id : null);
     if (over) {
       updateTheme(selectedColorObj.hex, over.id, "colors");
-      //update variants here since we know the category
-      console.log("selectedColorObj", selectedColorObj);
-      updateVariants(selectedColorObj.base, over.id, theme); //??? will this be in time
     }
   };
 
@@ -122,7 +115,6 @@ const Stylesheet = (props) => {
   }, [theme]);
 
   const updateTheme = (newValue, name, cat) => {
-    //#hex , brand, colors
     let newtheme = Object.assign({}, theme);
     newtheme[cat][name] = newValue;
     setTheme(newtheme);

@@ -1566,6 +1566,7 @@ export const updateVariants = (base, category, passedtheme) => {
   //return them as object
   let hex = passedtheme.colors[category];
   let variants = makeCustomShades(hex, base, category);
+  console.log("returned from make shades", variants);
 
   let newtheme = Object.assign({}, passedtheme);
 

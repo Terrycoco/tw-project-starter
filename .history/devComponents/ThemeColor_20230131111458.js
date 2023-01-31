@@ -38,15 +38,15 @@ const ThemeColor = ({ category, ...props }) => {
   const selectVariant = (obj) => {
     //make top obj the variant instead
     //but keep the base and category of this one
-    console.log("ThemeColor receives new obj", obj);
+    console.log("incoming obj", obj);
+    console.log("existing obj", colorObj);
     let newobj = new ColorObj(colorObj.base, obj.variant, obj.hex);
-
+    console.log("newobj:", newobj);
     setColorObj(newobj);
-
+    console.log(theme);
     let newtheme = Object.assign({}, theme);
     newtheme.colors[category] = obj.hex;
     setTheme(newtheme);
-    console.log("theme", newtheme);
   };
 
   return (

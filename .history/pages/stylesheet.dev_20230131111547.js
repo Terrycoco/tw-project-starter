@@ -9,7 +9,7 @@ import {
 import {
   getColorObjByHex,
   DEFAULTCOLOROBJ,
-  updateVariants,
+  updateVariables,
 } from "../devUtils/twColorUtils";
 import React, { useState, useEffect, useContext } from "react";
 import { setStorage, getStorage, clearStorage, newShade } from "../utils";
@@ -87,9 +87,6 @@ const Stylesheet = (props) => {
     setParent(over ? over.id : null);
     if (over) {
       updateTheme(selectedColorObj.hex, over.id, "colors");
-      //update variants here since we know the category
-      console.log("selectedColorObj", selectedColorObj);
-      updateVariants(selectedColorObj.base, over.id, theme); //??? will this be in time
     }
   };
 
@@ -122,7 +119,6 @@ const Stylesheet = (props) => {
   }, [theme]);
 
   const updateTheme = (newValue, name, cat) => {
-    //#hex , brand, colors
     let newtheme = Object.assign({}, theme);
     newtheme[cat][name] = newValue;
     setTheme(newtheme);

@@ -41,6 +41,7 @@ const ColorVariants = (props) => {
   const loopThroughVariants = () => {
     let result = [];
     if (typeof variants == "object") {
+      console.log("stored variants locall: ", variants);
       let keys = Object.keys(variants);
       for (const idx in keys) {
         let key = keys[idx];

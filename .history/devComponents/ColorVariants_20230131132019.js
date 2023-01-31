@@ -1,37 +1,15 @@
 import { PropTypes } from "prop-types";
-import { makeCustomShades } from "../devUtils/twColorUtils";
+import {
+  getCustomColorObjectsArray,
+  makeCustomShades,
+} from "../devUtils/twColorUtils";
 import { useState, useEffect } from "react";
 import { useTheme } from "hooks"; //theme was updated in stylesheet
-
-const ColorVariantBox = ({ category, variant, onSelect }) => {
-  const { theme } = useTheme();
-  const [obj, setObj] = useState(theme.variants[category][variant]);
-
-  let style = {
-    backgroundColor: obj.hex,
-  };
-
-  const handleSelect = (e) => {
-    onSelect(e, obj);
-  };
-
-  return (
-    <div
-      id={obj.hex}
-      className={`flex flex-col justify-center flex-1 h-6 text-xs text-center  ${obj.textColor}`}
-      style={style}
-      onClick={handleSelect}
-    >
-      {obj.variant}
-    </div>
-  );
-};
 
 const ColorVariants = (props) => {
   const { theme, setTheme } = useTheme();
   const [base, setBase] = useState(props.base);
   const [label, setLabel] = useState("variant");
-  const [variants, setVariants] = useState(theme.variants[props.category]);
 
   const handleSelect = (e, obj) => {
     //make this one the parent color
@@ -40,22 +18,32 @@ const ColorVariants = (props) => {
 
   const loopThroughVariants = () => {
     let result = [];
-    if (typeof variants == "object") {
-      let keys = Object.keys(variants);
+    if (typeof theme.variants[props.category] === "object") {
+      let keys = Object.keys(theme.variants[props.category]);
       for (const idx in keys) {
         let key = keys[idx];
         if (key === "DEFAULT") {
           continue;
         }
-        let obj = variants[key];
+        let obj = theme.variants[props.category][key];
+        // console.log("obj:", obj);
+
+        let style = {
+          backgroundColor: obj.hex,
+        };
+
         result.push(
-          <ColorVariantBox
-            variant={key}
-            category={props.category}
-            onSelect={handleSelect}
-          />
+          <div
+            id={obj.hex}
+            key={`${props.base}${key}`}
+            className={`flex flex-col justify-center flex-1 h-6 text-xs text-center  ${obj.textColor}`}
+            style={style}
+            onClick={(e) => handleSelect(e, obj)}
+          >
+            {obj[label]}
+          </div>
         );
-      } //end for
+      }
       return result;
     } else {
       return null;

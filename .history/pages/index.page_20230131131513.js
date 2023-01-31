@@ -89,7 +89,7 @@ export default function Home() {
           Launch demo modal
         </button>
       </div>
-      <div className={`${theme.text.base} hover:text-brand-200`}>
+      <div className={`${theme.text.base} hover:text-red-200`}>
         Is this the base?
       </div>
       <div className={theme.text.h1}>Is this the H1?</div>

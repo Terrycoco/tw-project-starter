@@ -13,7 +13,7 @@ const ThemeColor = ({ category, ...props }) => {
 
   useEffect(() => {
     setColorObj(props.colorObj);
-    setHex(props.colorObj.hex);
+    setThisHex(props.colorObj.hex);
   }, [props.colorObj.hex, props.colorObj]);
 
   //when top level colors changes, update color obj
@@ -21,9 +21,7 @@ const ThemeColor = ({ category, ...props }) => {
     if (theme.colors[category] !== hex) {
       let newhex = theme.colors[category];
       setHex(newhex);
-      let co = getColorObjByHex(newhex);
-      console.log("co:", co);
-      setColorObj(co);
+      setColorObj(getColorObjByHex(newhex));
     }
   }, [category, theme, hex]);
 
@@ -38,15 +36,16 @@ const ThemeColor = ({ category, ...props }) => {
   const selectVariant = (obj) => {
     //make top obj the variant instead
     //but keep the base and category of this one
-    console.log("ThemeColor receives new obj", obj);
+
+    console.log("incoming obj", obj);
+    console.log("existing obj", colorObj);
     let newobj = new ColorObj(colorObj.base, obj.variant, obj.hex);
-
+    console.log("newobj:", newobj);
     setColorObj(newobj);
-
+    console.log(theme);
     let newtheme = Object.assign({}, theme);
     newtheme.colors[category] = obj.hex;
     setTheme(newtheme);
-    console.log("theme", newtheme);
   };
 
   return (
