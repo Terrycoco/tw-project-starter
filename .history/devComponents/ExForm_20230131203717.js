@@ -1,0 +1,63 @@
+import React, { useState } from "react";
+import { isValidHexCode } from "../devUtils/twColorUtils";
+
+let inputStyle = `
+    form-control
+    block
+    w-full
+    px-2
+    py-1
+    text-sm
+    font-normal
+    bg-white bg-clip-padding
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+   focus:bg-white focus:border-blue-600 focus:outline-none
+`;
+
+let labelStyle = `form-label inline-block  text-gray-700 text-xs`;
+
+const NameForm = (props) => {
+  const [hex, setHex] = useState("");
+  const [bg, setBg] = useState({ backgroundColor: "#fff" });
+
+  const handleChange = (e) => {
+    if (!e.target.value.startsWith("#")) {
+      setHex("#" + e.target.value);
+    } else {
+      setHex(e.target.value);
+    }
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    let valid = isValidHexCode(hex);
+
+    if (valid) {
+      alert(`${valid} Submitting Name ${hex}`);
+    } else {
+      alert(`${valid} not Submitting Name ${hex}`);
+    }
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <label className={labelStyle}>
+        Hex Code:
+        <input
+          type="text"
+          value={hex}
+          className={inputStyle}
+          onChange={handleChange}
+          style={bg}
+        />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  );
+};
+
+export default NameForm;
