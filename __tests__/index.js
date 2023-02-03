@@ -1,6 +1,7 @@
 import useColorChanger from "../hooks/useColorChanger";
+
 import theme from "../themes/theme";
-import { initVariants } from "../devUtils/twColorUtils";
+import { initVariants, getCustomVariants } from "../devUtils/twColorUtils";
 
 const testClass = "bg-brand text-accent";
 const testVars = "bg-brand-100 text-accent-900";
@@ -8,6 +9,7 @@ const testHex = "bg-[#0f766e] text-[#ffffff]";
 const testHover = "bg-brand hover:text-brand-200";
 
 const hexBrand = "#0f766e";
+const lightTeal = "#f0fdfa";
 
 const initTheme = initVariants(theme);
 
@@ -108,5 +110,20 @@ describe("useColorChanger hover  ----", function () {
     let result = useColorChanger(testHover, initTheme);
     console.log(result);
     expect(result.color).toBe("#ffffff");
+  });
+});
+
+describe.only("calculate shade values------", function () {
+  test("returns object", () => {
+    expect(typeof getCustomVariants(lightTeal)).toBe("object");
+  });
+  test("returns object with lightest shade at 50", () => {
+    expect(getCustomVariants(lightTeal).hasOwnProperty("50")).toBe(true);
+  });
+  test("lightest shade is not white", () => {
+    expect(getCustomVariants(lightTeal["50"])).not.toBe("#ffffff");
+  });
+  test("darkest shade is not black", () => {
+    expect(getCustomVariants(hexBrand["900"])).not.toBe("#000000");
   });
 });

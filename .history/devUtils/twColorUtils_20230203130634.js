@@ -1592,8 +1592,7 @@ export const getCustomVariants = (hex) => {
     lincr = Math.floor(topVal / 5);
     //console.log("lincr: ", lincr);
     lightest = lightenDarkenColor(hex, lincr * 5);
-    // console.log("lightest is:", hexToDecimal(lightest));
-  } while (hexToDecimal(lightest) >= hexToDecimal("ffffff") - 1800);
+  } while (hexToDecimal(lightest) >= hexToDecimal("ffffff") - 20);
 
   //got incr for light
   shadeVals[50] = lightest;
@@ -1618,8 +1617,7 @@ export const getCustomVariants = (hex) => {
     dincr = Math.floor(lowVal / 5);
     // console.log("dincr: ", dincr);
     darkest = lightenDarkenColor(hex, dincr * 5);
-    console.log("darkest is:", hexToDecimal(darkest));
-  } while (hexToDecimal(darkest) <= hexToDecimal("000000") + 2000);
+  } while (darkest === "#000000");
 
   shadeVals[900] = darkest;
 

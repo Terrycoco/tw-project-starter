@@ -1619,7 +1619,7 @@ export const getCustomVariants = (hex) => {
     // console.log("dincr: ", dincr);
     darkest = lightenDarkenColor(hex, dincr * 5);
     console.log("darkest is:", hexToDecimal(darkest));
-  } while (hexToDecimal(darkest) <= hexToDecimal("000000") + 2000);
+  } while (hexToDecimal(darkest) <= hexToDecimal("000000") + 1800);
 
   shadeVals[900] = darkest;
 

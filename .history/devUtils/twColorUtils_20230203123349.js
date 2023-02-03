@@ -1,5 +1,5 @@
 import twColors from "tailwindcss/colors";
-import { getTextColorFromHex, hexToDecimal } from "../utils";
+import { getTextColorFromHex } from "../utils";
 import { currentTheme as theme } from "../themes";
 import { twMerge } from "tailwind-merge";
 
@@ -1583,7 +1583,6 @@ export const getCustomVariants = (hex) => {
 
   let topVal = 213;
   let lightest = lightenDarkenColor(hex, 213);
-  console.log("maxlight: ", lightest);
   let lincr = 1;
 
   do {
@@ -1592,8 +1591,7 @@ export const getCustomVariants = (hex) => {
     lincr = Math.floor(topVal / 5);
     //console.log("lincr: ", lincr);
     lightest = lightenDarkenColor(hex, lincr * 5);
-    // console.log("lightest is:", hexToDecimal(lightest));
-  } while (hexToDecimal(lightest) >= hexToDecimal("ffffff") - 1800);
+  } while (lightest === "#ffffff");
 
   //got incr for light
   shadeVals[50] = lightest;
@@ -1618,8 +1616,7 @@ export const getCustomVariants = (hex) => {
     dincr = Math.floor(lowVal / 5);
     // console.log("dincr: ", dincr);
     darkest = lightenDarkenColor(hex, dincr * 5);
-    console.log("darkest is:", hexToDecimal(darkest));
-  } while (hexToDecimal(darkest) <= hexToDecimal("000000") + 2000);
+  } while (darkest === "#000000");
 
   shadeVals[900] = darkest;
 

@@ -1,5 +1,5 @@
 import twColors from "tailwindcss/colors";
-import { getTextColorFromHex, hexToDecimal } from "../utils";
+import { getTextColorFromHex } from "../utils";
 import { currentTheme as theme } from "../themes";
 import { twMerge } from "tailwind-merge";
 
@@ -1581,9 +1581,8 @@ export const getCustomVariants = (hex) => {
   //home base
   shadeVals[450] = hex;
 
-  let topVal = 213;
-  let lightest = lightenDarkenColor(hex, 213);
-  console.log("maxlight: ", lightest);
+  let topVal = 225;
+  let lightest = "#ffffff";
   let lincr = 1;
 
   do {
@@ -1592,8 +1591,11 @@ export const getCustomVariants = (hex) => {
     lincr = Math.floor(topVal / 5);
     //console.log("lincr: ", lincr);
     lightest = lightenDarkenColor(hex, lincr * 5);
-    // console.log("lightest is:", hexToDecimal(lightest));
-  } while (hexToDecimal(lightest) >= hexToDecimal("ffffff") - 1800);
+    console.log(
+      "when white is passed:",
+      lightenDarkenColor("#ffffff", lincr * 5)
+    );
+  } while (lightest === "#ffffff");
 
   //got incr for light
   shadeVals[50] = lightest;
@@ -1608,8 +1610,8 @@ export const getCustomVariants = (hex) => {
   shadeVals[400] = lightenDarkenColor(hex, lincr * 1);
 
   //now do the same for black
-  let lowVal = -213;
-  let darkest = lightenDarkenColor(hex, -213);
+  let lowVal = -225;
+  let darkest = "#000000";
   let dincr = 1;
 
   do {
@@ -1618,8 +1620,7 @@ export const getCustomVariants = (hex) => {
     dincr = Math.floor(lowVal / 5);
     // console.log("dincr: ", dincr);
     darkest = lightenDarkenColor(hex, dincr * 5);
-    console.log("darkest is:", hexToDecimal(darkest));
-  } while (hexToDecimal(darkest) <= hexToDecimal("000000") + 2000);
+  } while (darkest === "#000000");
 
   shadeVals[900] = darkest;
 
@@ -1631,6 +1632,6 @@ export const getCustomVariants = (hex) => {
   shadeVals[600] = lightenDarkenColor(hex, dincr * 2);
   shadeVals[700] = lightenDarkenColor(hex, dincr * 3);
   shadeVals[800] = lightenDarkenColor(hex, dincr * 4);
-  console.log(shadeVals);
+  //console.log(shadeVals);
   return shadeVals;
 };

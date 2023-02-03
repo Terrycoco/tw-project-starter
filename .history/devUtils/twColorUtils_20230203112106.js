@@ -1,5 +1,5 @@
 import twColors from "tailwindcss/colors";
-import { getTextColorFromHex, hexToDecimal } from "../utils";
+import { getTextColorFromHex } from "../utils";
 import { currentTheme as theme } from "../themes";
 import { twMerge } from "tailwind-merge";
 
@@ -59,7 +59,6 @@ export function isValidHexCode(str) {
 }
 
 function lightenDarkenColor(col, amt) {
-  if (!col || col === undefined) return "ERROR";
   return (
     "#" +
     col
@@ -129,11 +128,13 @@ export const makeCustomShades = (hex, base, category, useHexOnly = false) => {
       customShades[key] = obj;
     });
   } else {
-    //recalulate all the shades to exclude white and black
-    let vars = getCustomVariants(hex);
-    let keys = Object.keys(vars);
+    //for each val in shadeVals
+    let keys = Object.keys(shadeVals);
     keys.forEach((key) => {
-      let obj = new ColorObj(category, key, vars[key]);
+      //get shade hex
+      let shadehex = lightenDarkenColor(hex, shadeVals[key]);
+      let obj = new ColorObj(category, key, shadehex);
+
       customShades[key] = obj;
     });
   }
@@ -1576,30 +1577,29 @@ export const updateVariants = (base, category, passedtheme) => {
   return true;
 };
 
-export const getCustomVariants = (hex) => {
+export const getShadeVals = (hex) => {
   let shadeVals = {};
+
   //home base
   shadeVals[450] = hex;
 
-  let topVal = 213;
-  let lightest = lightenDarkenColor(hex, 213);
-  console.log("maxlight: ", lightest);
+  let topVal = 225;
+  let lightest = "#ffffff";
   let lincr = 1;
 
   do {
     //recalculate incr
     topVal = topVal - 1;
     lincr = Math.floor(topVal / 5);
-    //console.log("lincr: ", lincr);
+    console.log("lincr: ", lincr);
     lightest = lightenDarkenColor(hex, lincr * 5);
-    // console.log("lightest is:", hexToDecimal(lightest));
-  } while (hexToDecimal(lightest) >= hexToDecimal("ffffff") - 1800);
+  } while (lightest === "#ffffff");
 
   //got incr for light
   shadeVals[50] = lightest;
 
-  // console.log("incr for light is :", lincr);
-  // console.log("lightest:", lightest);
+  console.log("incr for light is :", lincr);
+  console.log("lightest:", lightest);
 
   //calc the others between
   shadeVals[100] = lightenDarkenColor(hex, lincr * 4);
@@ -1608,23 +1608,23 @@ export const getCustomVariants = (hex) => {
   shadeVals[400] = lightenDarkenColor(hex, lincr * 1);
 
   //now do the same for black
-  let lowVal = -213;
-  let darkest = lightenDarkenColor(hex, -213);
+  let lowVal = -225;
+  let darkest = "#000000";
   let dincr = 1;
 
   do {
     //recalculate incr
     lowVal = lowVal + 1;
     dincr = Math.floor(lowVal / 5);
-    // console.log("dincr: ", dincr);
+    console.log("dincr: ", dincr);
     darkest = lightenDarkenColor(hex, dincr * 5);
-    console.log("darkest is:", hexToDecimal(darkest));
-  } while (hexToDecimal(darkest) <= hexToDecimal("000000") + 2000);
+  } while (darkest === "#000000");
 
+  //got incr for light
   shadeVals[900] = darkest;
 
-  // console.log("incr for dark is :", dincr);
-  // console.log("darkest:", darkest);
+  console.log("incr for dark is :", dincr);
+  console.log("darkest:", darkest);
 
   //calc the others between
   shadeVals[500] = lightenDarkenColor(hex, dincr * 1);
