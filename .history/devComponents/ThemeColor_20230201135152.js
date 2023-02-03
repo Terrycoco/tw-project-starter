@@ -1,25 +1,29 @@
 import { useState, useEffect } from "react";
 import ColorVariants from "./ColorVariants";
-import { getColorObjByHex, updateVariants } from "../devUtils/twColorUtils";
+import { ColorObj, getColorObjByHex } from "../devUtils/twColorUtils";
 import { useTheme } from "../hooks";
 
-//listens to theme for top level
-//only acts when receives variant as top
+//don't need theme because colorObj is passed in from stylesheet
 //TODO make use of useColorChanger
 const ThemeColor = ({ category, ...props }) => {
-  const [colorObj, setColorObj] = useState({});
+  const [colorObj, setColorObj] = useState(props.colorObj);
   const [key, setKey] = useState("id");
   const { theme, setTheme } = useTheme();
-  const [hex, setHex] = useState("");
+  const [hex, setHex] = useState(props.colorObj.hex);
 
-  //when top level colors changes in theme, update colorobj
+  useEffect(() => {
+    setColorObj(props.colorObj);
+    setHex(props.colorObj.hex);
+  }, [props.colorObj.hex, props.colorObj]);
+
+  //when top level colors changes, update color obj
   useEffect(() => {
     if (theme.colors[category] !== hex) {
       let newhex = theme.colors[category];
       setHex(newhex);
-      let co = getColorObjByHex(newhex, category);
-      //console.log("ThemeColor receives top color:", co);
-      setColorObj(co); //top level
+      let co = getColorObjByHex(newhex);
+      console.log("ThemeColor receives top color:", co);
+      setColorObj(co);
     }
   }, [category, theme, hex]);
 
@@ -32,18 +36,17 @@ const ThemeColor = ({ category, ...props }) => {
   };
 
   const selectVariant = (obj) => {
-    //only time actually set theme
-    //receive obj from variants below
-    //reset top level and recalc variants
+    //make top obj the variant instead
+    //but keep the base and category of this one
     console.log("ThemeColor receives new obj", obj);
-    //let newobj = new ColorObj(colorObj.base, obj.variant, obj.hex);
-    let co = getColorObjByHex(obj.hex, category);
-    setColorObj(co); //set top level
+    let newobj = new ColorObj(colorObj.base, obj.variant, obj.hex);
+
+    setColorObj(newobj);
 
     let newtheme = Object.assign({}, theme);
     newtheme.colors[category] = obj.hex;
     setTheme(newtheme);
-    updateVariants(co.base, category, theme);
+    console.log("theme", newtheme);
   };
 
   return (
@@ -64,7 +67,7 @@ const ThemeColor = ({ category, ...props }) => {
       </div>
       {props.showVariants ? (
         <ColorVariants
-          key={colorObj.hex}
+          key={colorObj.id}
           base={colorObj.base}
           category={category}
           onSelect={selectVariant}

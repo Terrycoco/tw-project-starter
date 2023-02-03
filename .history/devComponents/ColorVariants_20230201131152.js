@@ -12,7 +12,7 @@ const ColorVariantBox = ({ category, variant, onSelect }) => {
   };
 
   const handleSelect = (e) => {
-    onSelect(e, obj); //send to parent
+    onSelect(e, obj);
   };
 
   return (
@@ -44,7 +44,13 @@ const ColorVariants = (props) => {
       let keys = Object.keys(variants);
       for (const idx in keys) {
         let key = keys[idx];
-
+        if (key === "DEFAULT") {
+          <ColorVariantBox
+            variant={key}
+            category={props.category}
+            onSelect={handleSelect}
+          />;
+        }
         let obj = variants[key];
         result.push(
           <ColorVariantBox

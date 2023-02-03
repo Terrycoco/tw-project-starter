@@ -64,7 +64,7 @@ const ThemeColor = ({ category, ...props }) => {
       </div>
       {props.showVariants ? (
         <ColorVariants
-          key={colorObj.hex}
+          key={colorObj.id}
           base={colorObj.base}
           category={category}
           onSelect={selectVariant}

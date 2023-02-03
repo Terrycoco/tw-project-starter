@@ -89,13 +89,16 @@ const Stylesheet = (props) => {
     if (over) {
       //fetch colorObj now that we know category
       let obj = getColorObjByHex(selectedColorObj.hex, over.id);
-      console.log("new obj", obj);
+      console.log("selectedColorObj", selectedColorObj);
 
-      //update top level hexcolor
-      updateTheme(obj.hex, over.id, "colors"); //updates top level hex
-
-      updateVariants(obj.base, over.id, theme);
-      console.log("newtheme:", theme);
+      // updateTheme(selectedColorObj.hex, over.id, "colors"); //updates top level hex
+      // //update variants here since we know the category
+      // console.log("selectedColorObj", selectedColorObj);
+      // if (selectedColorObj.base === undefined) {
+      //   selectedColorObj.base = over.id;
+      // }
+      // let vars = updateVariants(selectedColorObj.base, over.id, theme);
+      // console.log("newtheme:", theme);
     }
   };
 

@@ -112,7 +112,7 @@ const shadeVals = {
 export const DEFAULTCOLOROBJ = new ColorObj("teal", 500, twColors.teal[500]);
 
 //make each time because may change
-export const makeCustomShades = (hex, base, category, useHexOnly = false) => {
+export const makeCustomShades = (hex, base, category, useHexOnly) => {
   //console.log("hex", hex, "base", base);
   let customShades = {};
   if (!isValidHexCode(hex)) return "ERROR";

@@ -57,21 +57,11 @@ const HexInput = (props) => {
   const validate = (val) => {
     if (val.length == 7 && isValidHexCode(val)) {
       setBg({ backgroundColor: `${val}` });
-
-      //fetch color obj
-      let obj = getColorObjByHex(val);
-      setTextColor(obj.textColor);
-
-      //notify if is tw color
+      setTextColor(getTextColorFromHex(val));
+      //check if is tw color
       let tw = getTWColornameByHex(val);
       let info = tw ? `(Tailwind Color: ${tw})` : "";
       setLabel(`Hex is valid ${info}`);
-
-      console.log("hexobj:", obj);
-      //send it to stylesheet to hold for dragging
-      props.onSelect(obj);
-
-      //release for dragging
       setIsValid(true);
     }
   };

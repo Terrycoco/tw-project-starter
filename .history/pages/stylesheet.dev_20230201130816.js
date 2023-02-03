@@ -87,14 +87,10 @@ const Stylesheet = (props) => {
     // otherwise reset the parent to `null`
     setParent(over ? over.id : null);
     if (over) {
-      //fetch colorObj now that we know category
-      let obj = getColorObjByHex(selectedColorObj.hex, over.id);
-      console.log("new obj", obj);
-
-      //update top level hexcolor
-      updateTheme(obj.hex, over.id, "colors"); //updates top level hex
-
-      updateVariants(obj.base, over.id, theme);
+      updateTheme(selectedColorObj.hex, over.id, "colors");
+      //update variants here since we know the category
+      console.log("selectedColorObj", selectedColorObj);
+      let vars = updateVariants(selectedColorObj.base, over.id, theme);
       console.log("newtheme:", theme);
     }
   };
@@ -145,7 +141,6 @@ const Stylesheet = (props) => {
     } else {
       if (cat === "colors") {
         let colorObj = getColorObjByHex(value);
-        console.log("colorObj for themecolor:", colorObj);
         return (
           <Droppable key={key} id={key}>
             <ThemeColor

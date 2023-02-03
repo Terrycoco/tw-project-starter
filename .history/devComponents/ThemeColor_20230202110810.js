@@ -10,7 +10,7 @@ const ThemeColor = ({ category, ...props }) => {
   const [colorObj, setColorObj] = useState({});
   const [key, setKey] = useState("id");
   const { theme, setTheme } = useTheme();
-  const [hex, setHex] = useState("");
+  const [hex, setHex] = useState(props.colorObj.hex);
 
   //when top level colors changes in theme, update colorobj
   useEffect(() => {
@@ -18,8 +18,8 @@ const ThemeColor = ({ category, ...props }) => {
       let newhex = theme.colors[category];
       setHex(newhex);
       let co = getColorObjByHex(newhex, category);
-      //console.log("ThemeColor receives top color:", co);
-      setColorObj(co); //top level
+      console.log("ThemeColor receives top color:", co);
+      setColorObj(co);
     }
   }, [category, theme, hex]);
 
@@ -64,7 +64,7 @@ const ThemeColor = ({ category, ...props }) => {
       </div>
       {props.showVariants ? (
         <ColorVariants
-          key={colorObj.hex}
+          key={colorObj.id}
           base={colorObj.base}
           category={category}
           onSelect={selectVariant}

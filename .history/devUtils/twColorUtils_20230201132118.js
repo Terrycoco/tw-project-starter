@@ -112,15 +112,16 @@ const shadeVals = {
 export const DEFAULTCOLOROBJ = new ColorObj("teal", 500, twColors.teal[500]);
 
 //make each time because may change
-export const makeCustomShades = (hex, base, category, useHexOnly = false) => {
+export const makeCustomShades = (hex, base, category) => {
   //console.log("hex", hex, "base", base);
   let customShades = {};
   if (!isValidHexCode(hex)) return "ERROR";
   customShades = {}; //add color to obj
+  //TODO NEED TO ADD DEFAULT?
 
   //if this is a tw color just get normal variants
 
-  if (!useHexOnly && twColorList.includes(base)) {
+  if (twColorList.includes(base)) {
     //this is a tailwind color
     let keys = Object.keys(twColors[base]);
     keys.forEach((key) => {
@@ -1507,12 +1508,10 @@ export const twHexList = {
   "#881337": { name: "rose-900", color: "rose", value: "900", hex: "#881337" },
 };
 
-export const getColorObjByHex = (hex, category) => {
+export const getColorObjByHex = (hex) => {
   let tw = twHexList[hex];
   if (typeof tw === "object") {
     return new ColorObj(tw.color, tw.value, hex);
-  } else if (category !== null) {
-    return new ColorObj(category, "450", hex);
   } else {
     return new ColorObj("custom", "450", hex);
   }
@@ -1573,6 +1572,5 @@ export const updateVariants = (base, category, passedtheme) => {
     newtheme.variants[category] = {};
   }
   newtheme.variants[category] = variants;
-  console.log("variants updated: ", variants);
-  return true;
+  return variants;
 };
