@@ -44,6 +44,7 @@ const HexInput = (props) => {
   const [isError, setIsError] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [label, setLabel] = useState("Enter Hex");
+  const [showPicker, setShowPicker] = useState(false);
 
   const handleChange = (e) => {
     let newval = e.target.value;
@@ -75,7 +76,7 @@ const HexInput = (props) => {
       let tw = getTWColornameByHex(val);
       let info = tw ? `(Tailwind Color: ${tw})` : "";
       setLabel(`Hex is valid ${info}`);
-      setHex(val);
+      setHex(hex);
 
       // console.log("hexobj:", obj);
       //send it to stylesheet to hold for dragging
@@ -105,9 +106,21 @@ const HexInput = (props) => {
     validate(hex);
   };
 
-  const handleClosePicker = (e) => {
-    e.stopPropagation();
-    props.togglePicker(e);
+  const renderButtons = () => {
+    return (
+      <div className="flex flex-row justify-between">
+        <button type="button" onClick={handleClear}>
+          <FontAwesomeIcon icon={faRotateLeft} />
+        </button>
+        <button
+          onClick={() => {
+            setShowPicker(!showPicker);
+          }}
+        >
+          <FontAwesomeIcon icon={faPaintBrush} />
+        </button>
+      </div>
+    );
   };
 
   const renderForm = () => {
@@ -129,29 +142,16 @@ const HexInput = (props) => {
     );
   };
 
-  return (
+  return isValid === true ? (
     <div id={`draghex${props.id}`} className="w-full mb-3">
-      {isValid ? (
-        <Draggable id="hexinput">{renderForm()}</Draggable>
-      ) : (
-        renderForm()
-      )}
-      <div className="relative z-50">
-        <div className="flex flex-row justify-between">
-          <button type="button" onClick={handleClear}>
-            <FontAwesomeIcon icon={faRotateLeft} />
-          </button>
-          <button onClick={props.togglePicker} className="z-50">
-            <FontAwesomeIcon icon={faPaintBrush} />
-          </button>
-        </div>
-        {props.showPicker ? (
-          <ColorPicker
-            onSelect={selectedFromPicker}
-            onClose={props.togglePicker}
-          />
-        ) : null}
-      </div>
+      <Draggable id="hexinput">{renderForm()}</Draggable>
+      {renderButtons()}
+    </div>
+  ) : (
+    <div id={`hex${props.id}`} className="w-full mb-3">
+      {renderForm()}
+      {renderButtons()}
+      <ColorPicker isVisible={showPicker} onSelect={selectedFromPicker} />
     </div>
   );
 };

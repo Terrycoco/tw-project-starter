@@ -1,4 +1,4 @@
-import { ChromePicker } from "react-color";
+import { SketchPicker } from "react-color";
 import { useState } from "react";
 
 const ColorPicker = (props) => {
@@ -7,12 +7,7 @@ const ColorPicker = (props) => {
 
   const handleChangeComplete = (color) => {
     // setBackground({ background: color.hex });
-    props.onSelect(color.hex); //to parent
-  };
-
-  const preventClose = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    // props.onSelect(color.hex); //to parent
   };
 
   const handleClose = () => {
@@ -20,12 +15,8 @@ const ColorPicker = (props) => {
   };
 
   return (
-    <div
-      onClose={handleClose}
-      className="absolute top-0"
-      onClick={preventClose}
-    >
-      <ChromePicker color={color} onChangeComplete={handleChangeComplete} />
+    <div onClose={handleClose} className="absolute top-0">
+      <SketchPicker color={color} onChangeComplete={handleChangeComplete} />
     </div>
   );
 };

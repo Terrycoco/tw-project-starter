@@ -44,6 +44,7 @@ const HexInput = (props) => {
   const [isError, setIsError] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [label, setLabel] = useState("Enter Hex");
+  const [showPicker, setShowPicker] = useState(false);
 
   const handleChange = (e) => {
     let newval = e.target.value;
@@ -101,13 +102,34 @@ const HexInput = (props) => {
     evt.preventDefault();
   };
 
+  const handleClose = (e) => {
+    setShowPicker(false);
+  };
+
   const selectedFromPicker = (hex) => {
     validate(hex);
   };
 
-  const handleClosePicker = (e) => {
-    e.stopPropagation();
-    props.togglePicker(e);
+  const renderButtons = () => {
+    return (
+      <div className="relative z-50">
+        <div className="flex flex-row justify-between">
+          <button type="button" onClick={handleClear}>
+            <FontAwesomeIcon icon={faRotateLeft} />
+          </button>
+          <button
+            onClick={() => {
+              setShowPicker(!showPicker);
+            }}
+          >
+            <FontAwesomeIcon icon={faPaintBrush} />
+          </button>
+        </div>
+        {showPicker ? (
+          <ColorPicker onSelect={selectedFromPicker} onClose={handleClose} />
+        ) : null}
+      </div>
+    );
   };
 
   const renderForm = () => {
@@ -129,29 +151,19 @@ const HexInput = (props) => {
     );
   };
 
-  return (
-    <div id={`draghex${props.id}`} className="w-full mb-3">
-      {isValid ? (
-        <Draggable id="hexinput">{renderForm()}</Draggable>
-      ) : (
-        renderForm()
-      )}
-      <div className="relative z-50">
-        <div className="flex flex-row justify-between">
-          <button type="button" onClick={handleClear}>
-            <FontAwesomeIcon icon={faRotateLeft} />
-          </button>
-          <button onClick={props.togglePicker} className="z-50">
-            <FontAwesomeIcon icon={faPaintBrush} />
-          </button>
-        </div>
-        {props.showPicker ? (
-          <ColorPicker
-            onSelect={selectedFromPicker}
-            onClose={props.togglePicker}
-          />
-        ) : null}
-      </div>
+  return isValid === true ? (
+    <div
+      id={`draghex${props.id}`}
+      className="w-full mb-3"
+      onClick={handleClose}
+    >
+      <Draggable id="hexinput">{renderForm()}</Draggable>
+      {renderButtons()}
+    </div>
+  ) : (
+    <div id={`hex${props.id}`} className="w-full mb-3 relative">
+      {renderForm()}
+      {renderButtons()}
     </div>
   );
 };

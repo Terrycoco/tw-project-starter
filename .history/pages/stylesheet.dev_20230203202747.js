@@ -276,10 +276,8 @@ const Stylesheet = (props) => {
     return result;
   };
 
-  const togglePicker = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowPicker(!showPicker);
+  const handleClosePicker = (e) => {
+    setShowPicker(false);
   };
 
   //DEV: leave font variables at page level here (they're needed to safelist fonts);
@@ -303,7 +301,7 @@ const Stylesheet = (props) => {
 
       <TWColorPicker
         key="colorPicker"
-        visible={showTWPicker}
+        visible={showPicker}
         onSelect={handlePickerColorChange}
       />
       <ThemeShower
@@ -365,7 +363,7 @@ const Stylesheet = (props) => {
                   key="hexInputForm"
                   style={` p-3 h-10 border border-blackish text-sm font-bold `}
                   showPicker={showPicker}
-                  togglePicker={togglePicker}
+                  onClosePicker={handleClosePicker}
                 />
 
                 <a

@@ -44,6 +44,7 @@ const HexInput = (props) => {
   const [isError, setIsError] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [label, setLabel] = useState("Enter Hex");
+  const [showPicker, setShowPicker] = useState(true);
 
   const handleChange = (e) => {
     let newval = e.target.value;
@@ -101,14 +102,35 @@ const HexInput = (props) => {
     evt.preventDefault();
   };
 
+  const togglePicker = (e) => {
+    setShowPicker(!showPicker);
+  };
+
   const selectedFromPicker = (hex) => {
     validate(hex);
   };
 
-  const handleClosePicker = (e) => {
-    e.stopPropagation();
-    props.togglePicker(e);
-  };
+  // const renderButtons = () => {
+  //   return (
+  //     <div className="relative z-50">
+  //       <div className="flex flex-row justify-between">
+  //         <button type="button" onClick={handleClear}>
+  //           <FontAwesomeIcon icon={faRotateLeft} />
+  //         </button>
+  //         <button
+  //           onClick={() => {
+  //             setShowPicker(true);
+  //           }}
+  //         >
+  //           <FontAwesomeIcon icon={faPaintBrush} />
+  //         </button>
+  //       </div>
+  //       {showPicker ? (
+  //         <ColorPicker onSelect={selectedFromPicker} onClose={toggleMe} />
+  //       ) : null}
+  //     </div>
+  //   );
+  // };
 
   const renderForm = () => {
     return (
@@ -130,7 +152,11 @@ const HexInput = (props) => {
   };
 
   return (
-    <div id={`draghex${props.id}`} className="w-full mb-3">
+    <div
+      id={`draghex${props.id}`}
+      className="w-full mb-3"
+      onClick={handleClose}
+    >
       {isValid ? (
         <Draggable id="hexinput">{renderForm()}</Draggable>
       ) : (
@@ -141,15 +167,12 @@ const HexInput = (props) => {
           <button type="button" onClick={handleClear}>
             <FontAwesomeIcon icon={faRotateLeft} />
           </button>
-          <button onClick={props.togglePicker} className="z-50">
+          <button onClick={togglePicker}>
             <FontAwesomeIcon icon={faPaintBrush} />
           </button>
         </div>
-        {props.showPicker ? (
-          <ColorPicker
-            onSelect={selectedFromPicker}
-            onClose={props.togglePicker}
-          />
+        {showPicker ? (
+          <ColorPicker onSelect={selectedFromPicker} onClose={togglePicker} />
         ) : null}
       </div>
     </div>

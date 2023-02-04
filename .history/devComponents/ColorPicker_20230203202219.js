@@ -10,21 +10,12 @@ const ColorPicker = (props) => {
     props.onSelect(color.hex); //to parent
   };
 
-  const preventClose = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
   const handleClose = () => {
     props.onClose(color.hex);
   };
 
   return (
-    <div
-      onClose={handleClose}
-      className="absolute top-0"
-      onClick={preventClose}
-    >
+    <div onClose={handleClose} className="absolute top-0">
       <ChromePicker color={color} onChangeComplete={handleChangeComplete} />
     </div>
   );

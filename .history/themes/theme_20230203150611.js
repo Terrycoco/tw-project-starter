@@ -39,7 +39,7 @@ const _default = {
     label: "text-xs font-normal text-opacity-80 pt-2",
 
     kicker:
-      "italic font-special tracking-wide leading-tight font-normal uppercase text-primary dark:text-white text-sm pb-2",
+      "italic font-special tracking-wide leading-tight font-normal uppercase text-brand dark:text-white text-sm pb-2",
 
     subtext: "text-xs text-medium -mt-3",
 
@@ -51,7 +51,7 @@ const _default = {
   layout: {
     page: "w-screen min-h-screen mx-auto bg-whitish-100",
 
-    header: "bg-primary text-whitish h-12 md:h-22",
+    header: "bg-brand text-whitish h-12 md:h-22",
 
     section: "container m-6 p-6 mx-auto max-w-5xl bg-whitish",
 

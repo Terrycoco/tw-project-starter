@@ -277,8 +277,7 @@ const Stylesheet = (props) => {
   };
 
   const togglePicker = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    e.event.stopPropagation();
     setShowPicker(!showPicker);
   };
 
@@ -303,7 +302,7 @@ const Stylesheet = (props) => {
 
       <TWColorPicker
         key="colorPicker"
-        visible={showTWPicker}
+        visible={showPicker}
         onSelect={handlePickerColorChange}
       />
       <ThemeShower

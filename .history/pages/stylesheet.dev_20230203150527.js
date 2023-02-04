@@ -12,14 +12,13 @@ import {
   updateVariants,
 } from "../devUtils/twColorUtils";
 import React, { useState, useEffect, useContext } from "react";
-//import { setStorage, getStorage, clearStorage, newShade } from "../utils";
+import { setStorage, getStorage, clearStorage, newShade } from "../utils";
 import { DndContext } from "@dnd-kit/core";
 import { Draggable, Droppable } from "../components/dnd";
 import Navbar from "../devComponents/Navbar";
 import HexInput from "../devComponents/HexInput";
 import Textarea from "../devComponents/Textarea";
 import TWColorPicker from "../devComponents/TWColorPicker";
-import ColorPicker from "../devComponents/ColorPicker";
 import ColorTester from "../devComponents/ColorTester";
 import ThemeColor from "../devComponents/ThemeColor";
 import { FlexLayout, FlexColumn } from "../components/flex";
@@ -27,7 +26,7 @@ import FontDropdown from "../devComponents/FontDropdown";
 import ThemeShower from "../devComponents/ThemeShower";
 import { Heading, Subhead, Kicker, H3, Subtext } from "../devComponents/text";
 import { Page } from "../devComponents/layout";
-//mport { requestToBodyStream } from "next/dist/server/body-streams";
+import { requestToBodyStream } from "next/dist/server/body-streams";
 
 const styles = {
   section: "my-12",
@@ -61,12 +60,11 @@ const Stylesheet = (props) => {
   const [selectedColorObj, setSelectedColorObj] = useState({});
   const [testerColorObj, setTesterColorObj] = useState(DEFAULTCOLOROBJ);
   const [hexColorObj, setHexColorObj] = useState("");
-  const [showTWPicker, setShowTWPicker] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
   const [palette, setPalette] = useState({});
   const [text, setText] = useState({});
   const [fonts, setFonts] = useState({});
   const [showTheme, setShowTheme] = useState(false);
-  const [showPicker, setShowPicker] = useState(false);
 
   //dnd stuff
   const [parent, setParent] = useState(null);
@@ -276,12 +274,6 @@ const Stylesheet = (props) => {
     return result;
   };
 
-  const togglePicker = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowPicker(!showPicker);
-  };
-
   //DEV: leave font variables at page level here (they're needed to safelist fonts);
   return (
     <Page
@@ -301,9 +293,9 @@ const Stylesheet = (props) => {
         id="devNavbar"
       />
 
-      <TWColorPicker
+      <ColorPicker
         key="colorPicker"
-        visible={showTWPicker}
+        visible={showPicker}
         onSelect={handlePickerColorChange}
       />
       <ThemeShower
@@ -364,8 +356,6 @@ const Stylesheet = (props) => {
                   onSelect={setObjFromHexInput}
                   key="hexInputForm"
                   style={` p-3 h-10 border border-blackish text-sm font-bold `}
-                  showPicker={showPicker}
-                  togglePicker={togglePicker}
                 />
 
                 <a

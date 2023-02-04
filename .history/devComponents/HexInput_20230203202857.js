@@ -105,9 +105,9 @@ const HexInput = (props) => {
     validate(hex);
   };
 
-  const handleClosePicker = (e) => {
+  const onClosePicker = (e) => {
     e.stopPropagation();
-    props.togglePicker(e);
+    props.onClosePicker();
   };
 
   const renderForm = () => {
@@ -141,15 +141,12 @@ const HexInput = (props) => {
           <button type="button" onClick={handleClear}>
             <FontAwesomeIcon icon={faRotateLeft} />
           </button>
-          <button onClick={props.togglePicker} className="z-50">
+          <button onClick={openPicker} className="z-50">
             <FontAwesomeIcon icon={faPaintBrush} />
           </button>
         </div>
         {props.showPicker ? (
-          <ColorPicker
-            onSelect={selectedFromPicker}
-            onClose={props.togglePicker}
-          />
+          <ColorPicker onSelect={selectedFromPicker} onClose={handleClose} />
         ) : null}
       </div>
     </div>

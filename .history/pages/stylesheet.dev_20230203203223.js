@@ -277,7 +277,6 @@ const Stylesheet = (props) => {
   };
 
   const togglePicker = (e) => {
-    e.preventDefault();
     e.stopPropagation();
     setShowPicker(!showPicker);
   };

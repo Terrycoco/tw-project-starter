@@ -107,7 +107,7 @@ const HexInput = (props) => {
 
   const handleClosePicker = (e) => {
     e.stopPropagation();
-    props.togglePicker(e);
+    props.togglePicker();
   };
 
   const renderForm = () => {

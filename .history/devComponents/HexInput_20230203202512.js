@@ -45,6 +45,12 @@ const HexInput = (props) => {
   const [isValid, setIsValid] = useState(false);
   const [label, setLabel] = useState("Enter Hex");
 
+  const closePicker = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowPicker(false);
+  };
+
   const handleChange = (e) => {
     let newval = e.target.value;
     if (!newval.startsWith("#")) {
@@ -101,13 +107,13 @@ const HexInput = (props) => {
     evt.preventDefault();
   };
 
-  const selectedFromPicker = (hex) => {
-    validate(hex);
+  const openPicker = (e) => {
+    e.stopPropagation();
+    setShowPicker((current) => !current);
   };
 
-  const handleClosePicker = (e) => {
-    e.stopPropagation();
-    props.togglePicker(e);
+  const selectedFromPicker = (hex) => {
+    validate(hex);
   };
 
   const renderForm = () => {
@@ -141,15 +147,12 @@ const HexInput = (props) => {
           <button type="button" onClick={handleClear}>
             <FontAwesomeIcon icon={faRotateLeft} />
           </button>
-          <button onClick={props.togglePicker} className="z-50">
+          <button onClick={openPicker} className="z-50">
             <FontAwesomeIcon icon={faPaintBrush} />
           </button>
         </div>
         {props.showPicker ? (
-          <ColorPicker
-            onSelect={selectedFromPicker}
-            onClose={props.togglePicker}
-          />
+          <ColorPicker onSelect={selectedFromPicker} onClose={closePicker} />
         ) : null}
       </div>
     </div>
