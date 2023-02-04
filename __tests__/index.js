@@ -1,7 +1,12 @@
 import useColorChanger from "../hooks/useColorChanger";
 
 import theme from "../themes/theme";
-import { initVariants, getCustomVariants } from "../devUtils/twColorUtils";
+import {
+  initVariants,
+  getCustomVariants,
+  getPctOfHex,
+} from "../devUtils/twColorUtils";
+import { hexToDecimal } from "../utils";
 
 const testClass = "bg-brand text-accent";
 const testVars = "bg-brand-100 text-accent-900";
@@ -113,7 +118,7 @@ describe("useColorChanger hover  ----", function () {
   });
 });
 
-describe.only("calculate shade values------", function () {
+describe.skip("calculate shade values------", function () {
   test("returns object", () => {
     expect(typeof getCustomVariants(lightTeal)).toBe("object");
   });
@@ -125,5 +130,27 @@ describe.only("calculate shade values------", function () {
   });
   test("darkest shade is not black", () => {
     expect(getCustomVariants(hexBrand["900"])).not.toBe("#000000");
+  });
+});
+
+describe.only("testing calculation of blacks-------", function () {
+  const black = "#261f22";
+  test("return 100%", () => {
+    expect(getPctOfHex(black, 100)).toBe(black);
+  });
+  test("return 75%", () => {
+    expect(getPctOfHex(black, 75)).toBe(black);
+  });
+  test("return 50%", () => {
+    expect(getPctOfHex(black, 50)).toBe(black);
+  });
+  test("return 25%", () => {
+    expect(getPctOfHex(black, 25)).toBe(black);
+  });
+  test("return 10%", () => {
+    expect(getPctOfHex(black, 10)).toBe(black);
+  });
+  test("return 5%", () => {
+    expect(getPctOfHex(black, 5)).toBe(black);
   });
 });

@@ -1,0 +1,71 @@
+import { PropTypes } from "prop-types";
+import { makeCustomShades } from "../devUtils/twColorUtils";
+import { useState, useEffect } from "react";
+import { useTheme } from "hooks"; //theme was updated in stylesheet
+
+const ColorVariantBox = ({ category, variant, onSelect }) => {
+  const { theme } = useTheme();
+  const [obj, setObj] = useState(theme.variants[category][variant]);
+
+  let style = {
+    backgroundColor: obj.hex,
+  };
+
+  const handleSelect = (e) => {
+    onSelect(e, obj); //send to parent
+  };
+
+  return (
+    <div
+      id={obj.hex}
+      className={`flex flex-col justify-center flex-1 h-6 text-xs text-center  ${obj.textColor}`}
+      style={style}
+    >
+      {obj.variant}
+    </div>
+  );
+};
+
+const ColorVariants = (props) => {
+  const { theme, setTheme } = useTheme();
+  const [base, setBase] = useState(props.base);
+  const [label, setLabel] = useState("variant");
+  const [variants, setVariants] = useState(theme.variants[props.category]);
+
+  const handleSelect = (e, obj) => {
+    //make this one the parent color
+    props.onSelect(obj); //send up to parent
+  };
+
+  const loopThroughVariants = () => {
+    let result = [];
+    if (typeof variants == "object") {
+      let keys = Object.keys(variants);
+      for (const idx in keys) {
+        let key = keys[idx];
+
+        let obj = variants[key];
+        result.push(
+          <ColorVariantBox
+            variant={key}
+            category={props.category}
+            onSelect={handleSelect}
+          />
+        );
+      } //end for
+      return result;
+    } else {
+      return null;
+    }
+  };
+
+  return <div className="flex flex-row no-wrap">{loopThroughVariants()}</div>;
+};
+
+//NOTE: component receives variants from theme
+ColorVariants.propTypes = {
+  base: PropTypes.string, //this is the tw color name without the variant
+  category: PropTypes.string, //this is the theme color category (brand, accent)
+};
+
+export default ColorVariants;

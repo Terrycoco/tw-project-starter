@@ -1,0 +1,7 @@
+@import "./custom_base.css";
+@tailwind components;
+@tailwind utilities;
+
+.center-x {
+  @apply left-1/2 transform -translate-x-1/2;
+}
